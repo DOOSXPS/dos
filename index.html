@@ -1,47 +1,39 @@
-<!doctype html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#080b0d"><title>DOOS X | Gaming Host</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-<div class="shell">
-<header class="header">
-  <div class="brand"><span class="mark">X</span><div><h1>DOOS <b>X</b></h1><p>GAMING HOST • ENJOY YOUR GAMES</p></div></div>
-  <div class="header-tag">PLAY • EXPLORE • GAME</div>
-</header>
-<main class="layout">
-<section class="versions panel">
-  <div class="section-head"><span>اختار إصدار جهازك</span><small>HOST MENU</small></div>
-  <div class="version-list" id="versions">
-    <button class="version green"><span class="vnum">6.72</span><span class="vdesc">System tools</span><span class="arrow">›</span></button>
-    <button class="version orange"><span class="vnum">7.02</span><span class="vdesc">System tools</span><span class="arrow">›</span></button>
-    <button class="version green"><span class="vnum">7.50 – 7.55</span><span class="vdesc">System tools</span><span class="arrow">›</span></button>
-    <button class="version orange"><span class="vnum">7.00 – 13.52</span><span class="vdesc">Version range</span><span class="arrow">›</span></button>
-    <button class="version green"><span class="vnum">GoldHEN 9.00</span><span class="vdesc">Host entry</span><span class="arrow">›</span></button>
-    <button class="version orange"><span class="vnum">9.00 Manual</span><span class="vdesc">Manual option</span><span class="arrow">›</span></button>
-    <button class="version purple"><span class="vnum">SOFT 14.02</span><span class="vdesc">External reference</span><span class="arrow">›</span></button>
-    <button class="version green"><span class="vnum">استعادة المضيف</span><span class="vdesc">Restore host</span><span class="arrow">↻</span></button>
-  </div>
-  <p class="note">واجهة تجريبية: الأزرار غير موصّلة بملفات استغلال.</p>
-</section>
-<section class="games panel">
-  <div class="section-head"><span>منطقة الألعاب</span><small>GAME SPOTLIGHT</small></div>
-  <div class="featured" id="featured"><div class="feature-overlay"><span class="eyebrow">FEATURED</span><h2 id="gameTitle">GAMING ZONE</h2><p id="gameSubtitle">Your next adventure starts here.</p></div></div>
-  <div class="game-grid">
-    <button class="game-card active" data-title="GAMING ZONE" data-sub="Your next adventure starts here." data-art="art1"><span class="art art1"></span><span>Adventure</span></button>
-    <button class="game-card" data-title="RACING NIGHT" data-sub="Speed • Precision • Competition" data-art="art2"><span class="art art2"></span><span>Racing</span></button>
-    <button class="game-card" data-title="ACTION ARENA" data-sub="Enter the action zone." data-art="art3"><span class="art art3"></span><span>Action</span></button>
-    <button class="game-card" data-title="CO-OP TIME" data-sub="Play together. Have fun." data-art="art4"><span class="art art4"></span><span>Co-op</span></button>
-  </div>
-  <div class="games-foot">MORE GAMES • MORE FUN <span>✦</span></div>
-</section>
-</main>
-<footer class="footer panel">
-  <div class="contacts"><a href="tel:01220400630">☎ <span>01220400630</span></a><a href="tel:01507136939">☎ <span>01507136939</span></a></div>
-  <div class="slogan">ENJOY YOUR <b>GAMES</b></div><div class="foot-note">DOOS X • GAMING HOST</div>
-</footer>
-</div>
-<script src="app.js"></script>
-</body></html>
+const cards = [...document.querySelectorAll('.game-card')];
+const featured = document.getElementById('featured');
+const title = document.getElementById('gameTitle');
+const subtitle = document.getElementById('gameSubtitle');
+
+for (const card of cards) {
+  card.addEventListener('click', () => {
+    cards.forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+
+    title.textContent = card.dataset.title;
+    subtitle.textContent = card.dataset.sub;
+    featured.className = 'featured ' + card.dataset.art;
+  });
+}
+
+// SOFT 14.02
+const softButton = document.getElementById('soft1402');
+const viewer = document.getElementById('hostViewer');
+const main = document.querySelector('.layout');
+const footer = document.querySelector('.footer');
+const frame = document.getElementById('hostFrame');
+const backButton = document.getElementById('backButton');
+
+softButton.addEventListener('click', () => {
+  frame.src = 'https://webkitty.arabpixel.net/';
+  main.hidden = true;
+  footer.hidden = true;
+  viewer.hidden = false;
+  window.scrollTo(0, 0);
+});
+
+backButton.addEventListener('click', () => {
+  frame.src = 'about:blank';
+  viewer.hidden = true;
+  main.hidden = false;
+  footer.hidden = false;
+  window.scrollTo(0, 0);
+});
